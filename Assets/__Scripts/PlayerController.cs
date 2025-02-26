@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
 	public float speed;
 	public Text countText;
 	public Text winText;
+    public Text instructionText;
 
 	// Create private references to the rigidbody component on the player, and the count of pick up objects picked up so far
 	private Rigidbody rb;
@@ -27,6 +28,8 @@ public class PlayerController : MonoBehaviour {
 
 		// Run the SetCountText function to update the UI (see below)
 		SetCountText ();
+        instructionText.text = "It's Apple Pie Season! Collect your apple friends!";
+        Destroy(instructionText.gameObject, 5f);
 
 		// Set the text property of our Win Text UI to an empty string, making the 'You Win' (game over message) blank
 		winText.text = "";
@@ -69,13 +72,13 @@ public class PlayerController : MonoBehaviour {
 	void SetCountText()
 	{
 		// Update the text field of our 'countText' variable
-		countText.text = "Count: " + count.ToString ();
+		countText.text = "Quota: " + count.ToString () + "/10";
 
 		// Check if our 'count' is equal to or exceeded 12
-		if (count >= 12) 
+		if (count >= 5) 
 		{
 			// Set the text value of our 'winText'
-			winText.text = "You Win!";
+			winText.text = "You Met Quota! Jump in the basket!";
 		}
 	}
 }
