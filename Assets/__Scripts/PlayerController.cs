@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 	public Text countText;
 	public Text winText;
     public Text instructionText;
+    public Text instructionTwoText;
 
 	// Create private references to the rigidbody component on the player, and the count of pick up objects picked up so far
 	private Rigidbody rb;
@@ -32,7 +33,8 @@ public class PlayerController : MonoBehaviour {
         Destroy(instructionText.gameObject, 5f);
 
 		// Set the text property of our Win Text UI to an empty string, making the 'You Win' (game over message) blank
-		winText.text = "";
+		instructionTwoText.text="";
+        winText.text = "";
 	}
 
 	// Each physics step..
@@ -66,6 +68,10 @@ public class PlayerController : MonoBehaviour {
 			// Run the 'SetCountText()' function (see below)
 			SetCountText ();
 		}
+        if (other.gameObject.CompareTag("Basket") && count >= 5)
+        {
+            winText.text = "YOU WIN!!!!";
+        }
 	}
 
 	// Create a standalone function that can update the 'countText' UI and check if the required amount to win has been achieved
@@ -78,7 +84,8 @@ public class PlayerController : MonoBehaviour {
 		if (count >= 5) 
 		{
 			// Set the text value of our 'winText'
-			winText.text = "You Met Quota! Jump in the basket!";
+			instructionTwoText.text = "You Met Quota! Touch the basket to win!";
+            Destroy(instructionTwoText.gameObject, 2f);
 		}
 	}
 }
