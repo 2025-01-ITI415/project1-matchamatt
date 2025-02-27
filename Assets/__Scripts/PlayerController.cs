@@ -68,9 +68,14 @@ public class PlayerController : MonoBehaviour {
 			// Run the 'SetCountText()' function (see below)
 			SetCountText ();
 		}
-        if (other.gameObject.CompareTag("Basket") && count >= 5)
+        if (other.gameObject.CompareTag("Basket") && count >= 10)
         {
             winText.text = "YOU WIN!!!!";
+        }
+		if (other.gameObject.CompareTag("Bee"))
+        {
+            Destroy(this.gameObject);
+			winText.text = "YOU LOSE!!!!";
         }
 	}
 
@@ -81,7 +86,7 @@ public class PlayerController : MonoBehaviour {
 		countText.text = "Quota: " + count.ToString () + "/10";
 
 		// Check if our 'count' is equal to or exceeded 12
-		if (count >= 5) 
+		if (count >= 10) 
 		{
 			// Set the text value of our 'winText'
 			instructionTwoText.text = "You Met Quota! Touch the basket to win!";
